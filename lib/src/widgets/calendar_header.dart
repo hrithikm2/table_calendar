@@ -57,13 +57,20 @@ class CalendarHeader extends StatelessWidget {
               margin: headerStyle.leftChevronMargin,
               padding: headerStyle.leftChevronPadding,
             ),
-          Text(
+          Container(
+            child: headerTitleBuilder?.call(context, focusedMonth) ??
+                GestureDetector(
+                  onTap: onHeaderTap,
+                  onLongPress: onHeaderLongPress,
+                  child: Text(
                     text,
                     style: headerStyle.titleTextStyle,
                     textAlign: headerStyle.titleCentered
                         ? TextAlign.center
                         : TextAlign.start,
                   ),
+                ),
+          ),
                 
           if (headerStyle.formatButtonVisible &&
               availableCalendarFormats.length > 1)
